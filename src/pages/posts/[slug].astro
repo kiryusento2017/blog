@@ -105,8 +105,30 @@ const dateLong = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'lon
           这篇较短，没有分节。
         </div>
       )}
+      <div class="progress">
+        <div class="bar"><div class="fill" id="progress-fill"></div></div>
+        <div id="progress-pct" style="font-family: var(--f-mono); font-size: 10px; color: var(--ink-faint)">已读 0%</div>
+      </div>
     </aside>
   </main>
 
   <Footer />
+
+<script is:inline>
+  (function () {
+    var fill = document.getElementById('progress-fill');
+    var pct = document.getElementById('progress-pct');
+    if (!fill || !pct) return;
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var v = max > 0 ? Math.min(100, Math.round((h.scrollTop / max) * 100)) : 0;
+      fill.style.width = v + '%';
+      pct.textContent = '已读 ' + v + '%';
+    }
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  })();
+</script>
+
 </BaseLayout>
