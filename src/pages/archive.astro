@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopBar from '../components/TopBar.astro';
+import Footer from '../components/Footer.astro';
+import ArchiveFilter from '../components/ArchiveFilter';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts');
+const sorted = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="归档 — 终末诗篇">
+  <TopBar posts={sorted} />
+
+  <main>
+    <section class="hero" style="padding-top: 12vh; padding-bottom: 8vh;">
+      <div class="eyebrow reveal">
+        <span class="dash"></span>
+        <span>Archive · 归档</span>
+        <span class="dash"></span>
+      </div>
+      <h1 class="reveal" style="--rev-delay: 120ms">所有<br /><span class="em">写过的</span></h1>
+      <p class="dek reveal" style="--rev-delay: 280ms">一共 {sorted.length} 篇。</p>
+    </section>
+
+    <section class="section">
+      <ArchiveFilter posts={sorted} client:load />
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

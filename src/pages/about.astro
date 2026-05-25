@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopBar from '../components/TopBar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="关于 — 终末诗篇">
+  <TopBar posts={[]} />
+
+  <main class="colophon">
+    <h1 class="reveal">
+      关 <span class="em">于</span>
+    </h1>
+    <div class="col-body">
+      <p class="reveal" style="--rev-delay: 100ms">
+        这是一个开发者写给自己看的地方。大部分文字都是在夜里写下的。
+        我不打算把它做成任何意义上的"内容"，它更像一间私人的书房。
+      </p>
+      <p class="reveal" style="--rev-delay: 200ms">
+        白天写 TypeScript，晚上写中文。这两件事看起来不一样，但其实都是在练习同一件事——把混乱的东西想清楚，并且写下来。
+      </p>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

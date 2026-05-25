@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TopBar from '../../components/TopBar.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+const allPosts = await getCollection('posts');
+const sorted = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const { title, titleEm, date, category, tags, readTime, words, description, num } = post.data;
+
+const idx = sorted.findIndex(p => p.id === post.id);
+const prev = sorted[idx + 1];
+const next = sorted[idx - 1];
+
+const headings = (Array.isArray(post.rendered?.metadata?.headings)
+  ? post.rendered.metadata.headings
+  : []
+).filter((h: { depth: number }) => h.depth === 2);
+const dateLong = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout title={`${title}${titleEm || ''} — 终末诗篇`}>
+  <TopBar posts={sorted} />
+
+  <main class="article">
+    <aside class="article-rail left">
+      {num && <div class="item"><div class="k">编号</div><div class="v">{num}</div></div>}
+      <div class="item"><div class="k">日期</div><div class="v">{dateLong}</div></div>
+      <div class="item"><div class="k">类目</div><div class="v">{category}</div></div>
+      {words && <div class="item"><div class="k">字数</div><div class="v">{words.toLocaleString()}</div></div>}
+      {readTime && <div class="item"><div class="k">阅读</div><div class="v">{readTime}</div></div>}
+      {tags.length > 0 && (
+        <div class="item" style="margin-top: 18px">
+          <div class="k">标签</div>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px">
+            {tags.map((t: string) => (
+              <span class="pill" style="font-size: 9px; padding: 4px 8px">{t}</span>
+            ))}
+          </div>
+        </div>
+      )}
+    </aside>
+
+    <article class="article-body">
+      <div class="eyebrow reveal">
+        <span class="dot"></span>
+        <span>{category}</span>
+        <span>·</span>
+        {readTime && <span>{readTime} 阅读</span>}
+      </div>
+
+      <h1 class="reveal" style="--rev-delay: 120ms">
+        {title}
+        {titleEm && <><br /><span class="em">{titleEm}</span></>}
+      </h1>
+
+      <p class="dek reveal" style="--rev-delay: 240ms">{description}</p>
+
+      <div class="meta-strip reveal" style="--rev-delay: 360ms">
+        {tags.map((tag: string) => (
+          <span class="pill">{tag}</span>
+        ))}
+      </div>
+
+      <div class="content" set:html={post.rendered?.html} />
+
+      <div class="article-end reveal">· · ·</div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--rule)">
+        {prev ? (
+          <a class="reveal" href={`/posts/${prev.id}`} style="text-decoration: none; color: inherit">
+            <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px">← 上一篇</div>
+            <div style="font-family: var(--f-display); font-size: 22px; line-height: 1.2">{prev.data.title}{prev.data.titleEm ? ` · ${prev.data.titleEm}` : ''}</div>
+          </a>
+        ) : <div />}
+        {next ? (
+          <a class="reveal" href={`/posts/${next.id}`} style="text-decoration: none; color: inherit; text-align: right">
+            <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px">下一篇 →</div>
+            <div style="font-family: var(--f-display); font-size: 22px; line-height: 1.2">{next.data.title}{next.data.titleEm ? ` · ${next.data.titleEm}` : ''}</div>
+          </a>
+        ) : <div />}
+      </div>
+    </article>
+
+    <aside class="article-rail right">
+      <div class="h">目录 · Contents</div>
+      {headings.length > 0 ? headings.map((h: { slug: string; text: string }) => (
+        <a class="toc-item" href={`#${h.slug}`}>
+          <span class="n">/</span>
+          <span>{h.text}</span>
+        </a>
+      )) : (
+        <div style="font-size: 12px; color: var(--ink-faint); line-height: 1.6">
+          这篇较短，没有分节。
+        </div>
+      )}
+    </aside>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopBar from '../components/TopBar.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts');
+const sorted = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const featured = sorted.find(p => p.data.featured) || sorted[0];
+const recent = sorted.filter(p => p.id !== featured?.id).slice(0, 6);
+---
+
+<BaseLayout title="终末诗篇的博客">
+  <TopBar posts={sorted} />
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="eyebrow reveal">
+        <span class="pulse"></span>
+        <span>终末诗篇</span>
+        <span class="dash"></span>
+        <span>2026 至今</span>
+      </div>
+      <h1 class="reveal" style="--rev-delay: 120ms">
+        一个技术人<br />
+        <span class="em">的笔记本</span>
+      </h1>
+      <p class="dek reveal" style="--rev-delay: 300ms">
+        代码、工具、生活。一个公开的笔记本，更像是写给一年后的自己看。
+      </p>
+    </section>
+
+    {
+      featured && (
+        <section class="section">
+          <div class="section-head reveal">
+            <div class="left">
+              <span class="num">/ 01</span>
+              <h2>最新一篇 <span class="em">· latest</span></h2>
+            </div>
+            <a class="right" href={`/posts/${featured.id}`}>
+              <span>开始阅读</span>
+              <span class="arrow"></span>
+            </a>
+          </div>
+
+          <div class="featured reveal" style="--rev-delay: 100ms">
+            <a class="featured-card" href={`/posts/${featured.id}`}>
+              <div class="left-col">
+                <div class="cat-row">
+                  <span>{featured.data.category}</span>
+                  <span>·</span>
+                  <span>{featured.data.tags.join(' / ')}</span>
+                </div>
+                <h3>
+                  {featured.data.title}
+                  {featured.data.titleEm && <><br /><span class="em">{featured.data.titleEm}</span></>}
+                </h3>
+                <p class="dek">{featured.data.description}</p>
+                <div class="read">
+                  <span>阅读全文</span>
+                  <span class="arr"></span>
+                </div>
+              </div>
+              <div class="meta-side">
+                <div class="row">
+                  <div class="k">阅读时间</div>
+                  <div class="v">{featured.data.readTime || '—'}</div>
+                </div>
+                <div class="row">
+                  <div class="k">字数</div>
+                  <div class="v mono">{featured.data.words?.toLocaleString() || '—'}</div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Recent grid -->
+    {recent.length > 0 && (
+      <section class="section">
+        <div class="section-head reveal">
+          <div class="left">
+            <span class="num">/ 02</span>
+            <h2>近期 <span class="em">· recent</span></h2>
+          </div>
+          <a class="right" href="/archive">
+            <span>所有 {sorted.length} 篇</span>
+            <span class="arrow"></span>
+          </a>
+        </div>
+
+        <div class="grid">
+          {recent.map((post) => (
+            <a class="grid-item reveal" href={`/posts/${post.id}`}>
+              <div class="top">
+                <span class="date">{post.data.date.toISOString().slice(0, 10)}</span>
+              </div>
+              <h4>
+                {post.data.title}
+                {post.data.titleEm && <> <span class="em">{post.data.titleEm}</span></>}
+              </h4>
+              <div class="exc">{post.data.description}</div>
+              <div class="foot">
+                <span>{post.data.category}</span>
+                <span>{post.data.readTime || ''}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </main>
+
+  <Footer />
+</BaseLayout>

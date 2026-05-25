@@ -1,0 +1,47 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = '终末诗篇的博客 — 技术、工具、生活' } = Astro.props;
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#efeae0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@300;400;500&display=swap" />
+    <style is:global>
+      @import "/src/styles/global.css";
+    </style>
+  </head>
+  <body data-grain="on">
+    <div class="shell">
+      <slot />
+    </div>
+    <script>
+      // Scroll reveal — vanilla JS replacement for useReveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+      );
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.reveal, .reveal-word').forEach((el) => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>
