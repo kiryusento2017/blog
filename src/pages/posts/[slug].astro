@@ -78,7 +78,7 @@ const dateLong = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'lon
 
       <div class="article-end reveal">· · ·</div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--rule)">
+      <div class="post-nav">
         {prev ? (
           <a class="reveal" href={`/posts/${prev.id}`} style="text-decoration: none; color: inherit">
             <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px">← 上一篇</div>
