@@ -1028,4 +1028,32 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .article-body p.lead { font-size: 18px; }
   .article-body blockquote { font-size: 18px; padding-left: 20px; }
   .article-body pre { padding: 14px 16px; font-size: 12px; }
+
+  /* 超大标题压缩 */
+  .hero h1 { font-size: clamp(40px, 10vw, 72px); }
+  .colophon h1 { font-size: clamp(48px, 12vw, 100px); }
+  .year-group .year { font-size: clamp(48px, 12vw, 80px); }
+
+  /* about 页上下 padding 压缩 */
+  .colophon { padding: 48px var(--gutter) 80px; }
+
+  /* section-head 竖向排列 */
+  .section-head { flex-direction: column; gap: 8px; }
+
+  /* 上下篇导航单列 */
+  .post-nav { grid-template-columns: 1fr; }
+  .post-nav a { text-align: left !important; }
+
+  /* footer 竖向排列 */
+  .site-foot { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .site-foot .right { text-align: left; }
+
+  /* about 页首字下沉压缩 */
+  .colophon .col-body p:first-of-type::first-letter { font-size: 3em; }
+
+  /* copy-btn 触摸区域扩大 */
+  .copy-btn { padding: 8px 0 8px 8px; }
+
+  /* pill 触摸区域扩大 */
+  .pill { padding: 10px 16px; }
 }
