@@ -21,7 +21,12 @@ const links = [
     <img class="brand-logo" src="/brand-logo.png" alt="终末诗篇" />
     <span class="sub">A blog · since 2026</span>
   </a>
-  <nav class="nav">
+  <button class="hamburger" aria-label="菜单" id="hamburger-btn">
+    <span class="line"></span>
+    <span class="line"></span>
+    <span class="line"></span>
+  </button>
+  <nav class="nav" id="main-nav">
     {links.map((link) => (
       <a
         class="link"
@@ -43,5 +48,25 @@ const links = [
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+  }
+</script>
+
+<script>
+  const btn = document.getElementById('hamburger-btn');
+  const nav = document.getElementById('main-nav');
+  if (btn && nav) {
+    btn.addEventListener('click', () => {
+      const open = nav.classList.toggle('mobile-open');
+      btn.classList.toggle('active', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+
+    nav.querySelectorAll('.link').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('mobile-open');
+        btn.classList.remove('active');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
   }
 </script>
