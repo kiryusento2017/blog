@@ -198,7 +198,8 @@ document.querySelectorAll('.content pre').forEach(function (pre) {
 .grid-item h4,
 .grid-item .exc,
 .grid-item .foot { padding-left: 20px; }
-/* hover 态同步 */
+/* hover 态同步（外层容器与内层子元素 padding-left 保持一致，基础规则里 hover 是 14px，此处覆盖为 10px） */
+.grid-item:hover { padding-left: 10px; }
 .grid-item:hover .top,
 .grid-item:hover h4,
 .grid-item:hover .exc,
@@ -268,6 +269,14 @@ document.querySelectorAll('.content pre').forEach(function (pre) {
   padding-top: 28px;
   border-top: 1px solid var(--rule);
 }
+```
+
+**文章正文列表样式（`global.css` 全文没有任何 `ul`/`ol`/`li` 规则，markdown 渲染出的列表完全依赖浏览器默认，与整体自定义排版不统一）：**
+
+```css
+.article-body ul,
+.article-body ol { padding-left: 1.5em; margin: 1em 0 1.3em; }
+.article-body li { margin-bottom: 0.35em; }
 ```
 
 ---
