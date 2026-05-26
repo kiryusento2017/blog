@@ -727,7 +727,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   font-size: 13px;
   line-height: 1.7;
   color: var(--ink);
-  position: relative;
 }
 @media (prefers-color-scheme: dark) {
   .article-body pre { background: rgba(255,255,255,0.04); }
@@ -751,6 +750,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .article-body pre .f { color: #82d4ff; }
 }
 
+.code-wrap { position: relative; }
 .code-actions {
   position: absolute;
   top: 12px;
@@ -858,6 +858,17 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   color: var(--accent);
   letter-spacing: 0.5em;
 }
+.post-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+}
+.article-body ul,
+.article-body ol { padding-left: 1.5em; margin: 1em 0 1.3em; }
+.article-body li { margin-bottom: 0.35em; }
 
 /* =================== Colophon =================== */
 
@@ -960,4 +971,14 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   }
 
   .topbar { position: relative; }
+
+  /* article page */
+  .article { padding: 32px var(--gutter) 60px; }
+  .article-body h1 { font-size: clamp(36px, 8vw, 92px); }
+  .article-body h2 { font-size: 26px; margin-top: 1.6em; }
+  .article-body .dek { font-size: 18px; margin-bottom: 32px; }
+  .article-body p { font-size: 16px; line-height: 1.72; }
+  .article-body p.lead { font-size: 18px; }
+  .article-body blockquote { font-size: 18px; padding-left: 20px; }
+  .article-body pre { padding: 14px 16px; font-size: 12px; }
 }
