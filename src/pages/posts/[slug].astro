@@ -144,8 +144,12 @@ const dateLong = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'lon
     }
 
     document.querySelectorAll('.content pre').forEach(function (pre) {
-      var lang = pre.querySelector('.lang');
+      var wrap = document.createElement('div');
+      wrap.className = 'code-wrap';
+      pre.parentNode.insertBefore(wrap, pre);
+      wrap.appendChild(pre);
 
+      var lang = pre.querySelector('.lang');
       var actions = document.createElement('div');
       actions.className = 'code-actions';
 
@@ -188,7 +192,7 @@ const dateLong = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'lon
       });
 
       actions.appendChild(btn);
-      pre.appendChild(actions);
+      wrap.appendChild(actions);
     });
   })();
 </script>
