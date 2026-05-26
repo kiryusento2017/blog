@@ -958,6 +958,24 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   /* 归档列表三列 */
   .list .row { grid-template-columns: 110px 1fr 140px; }
 }
+@media (max-width: 768px) {
+  .hero h1 { font-size: clamp(48px, 12vw, 140px); }
+  .section-head { flex-direction: column; gap: 8px; }
+  .featured-card { padding: clamp(20px, 4vw, 36px); }
+  .grid-item { padding: 24px 20px 28px 0; }
+  .grid-item .top,
+  .grid-item h4,
+  .grid-item .exc,
+  .grid-item .foot { padding-left: 20px; }
+  .grid-item:hover { padding-left: 10px; }
+  .grid-item:hover .top,
+  .grid-item:hover h4,
+  .grid-item:hover .exc,
+  .grid-item:hover .foot { padding-left: 10px; }
+  .year-group .year { font-size: clamp(56px, 10vw, 120px); }
+  .list .row { grid-template-columns: 90px 1fr; }
+  .list .row .tag { display: none; }
+}
 @media (max-width: 640px) {
   .grid { grid-template-columns: 1fr; }
   .grid-item, .grid-item:nth-child(3n) { border-right: 0; }
