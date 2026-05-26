@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://zhongmo-shijian.example.com',
+  site: 'https://zmspblog.us.kg',
   server: { host: '0.0.0.0' },
   integrations: [react(), sitemap()]
 });
