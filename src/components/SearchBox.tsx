@@ -49,7 +49,7 @@ export default function SearchBox({ posts }: Props) {
   }, []);
 
   return (
-    <div ref={ref} style={{ position: 'relative' }}>
+    <div ref={ref} className="search-box-wrap" style={{ position: 'relative' }}>
       <input
         type="search"
         placeholder="搜索文章..."
