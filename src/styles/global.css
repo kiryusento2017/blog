@@ -129,33 +129,24 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px var(--gutter);
-  position: sticky;
-  top: 0;
-  z-index: 30;
+  padding: 16px var(--gutter);
   background: color-mix(in oklab, var(--bg), transparent 6%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: border-color 0.3s, padding 0.3s;
-  border-bottom: 1px solid transparent;
-}
-.topbar.scrolled {
-  border-bottom-color: var(--rule-soft);
-  padding-top: 16px;
-  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule-soft);
 }
 
 .brand {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
   cursor: pointer;
 }
-.brand .glyph {
-  font-family: var(--f-display);
-  font-size: 26px;
-  letter-spacing: 0.02em;
-  line-height: 1;
+.brand-logo {
+  width: 70px;
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+  margin: -8px -6px;
 }
 .brand .sub {
   font-family: var(--f-mono);
