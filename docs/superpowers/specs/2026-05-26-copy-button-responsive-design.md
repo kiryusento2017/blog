@@ -171,6 +171,9 @@
 /* footer 竖向排列（用 .site-foot 避免误伤 .grid-item .foot） */
 .site-foot { flex-direction: column; align-items: flex-start; gap: 12px; }
 .site-foot .right { text-align: left; }
+
+/* about 页首字下沉在手机上过大（4.2em ≈ 80px，旁边只能放 2-3 个汉字） */
+.colophon .col-body p:first-of-type::first-letter { font-size: 3em; }
 ```
 
 ---
@@ -190,6 +193,27 @@
   padding-top: 28px;
   border-top: 1px solid var(--rule);
 }
+```
+
+---
+
+---
+
+### 2e. SearchBox 响应式修复
+
+**问题：** SearchBox 根 div 无 class，内部 input 硬编码 `width: 180px` 内联样式。980px / 640px 断点下 nav 变为 `align-items: stretch`，容器被拉伸但 input 仍为 180px，视觉严重不协调。弹出层 `width: 360px` 在极窄视口（<360px）会溢出左侧。
+
+**改动：**
+
+**`src/components/SearchBox.tsx`**：给根 div 加 `className="search-box-wrap"`（原为仅有内联 `style="position: relative"`，保留 style，追加 className）。
+
+**`global.css` 980px 断点内追加：**
+
+```css
+/* SearchBox 在移动端展开菜单里自适应宽度 */
+.nav .search-box-wrap { width: 100%; }
+.nav .search-box-wrap input[type="search"] { width: 100% !important; }
+.nav .search-box-wrap > div { width: 100% !important; right: 0; left: 0; }
 ```
 
 ---
@@ -218,9 +242,10 @@
 
 | 文件 | 改动性质 |
 |------|----------|
-| `src/styles/global.css` | 新增 `.code-wrap`；补 `.post-nav` 基础样式；补强 980px；新增 768px；补强 640px |
+| `src/styles/global.css` | 新增 `.code-wrap`；补 `.post-nav` 基础样式；补强 980px（含 SearchBox + dark nav shadow）；新增 768px；补强 640px（含首字下沉修复） |
 | `src/pages/posts/[slug].astro` | JS 脚本改 code-wrap 注入；模板第 81 行去内联样式加 `.post-nav` class |
 | `src/components/Footer.astro` | `.foot` 追加 `site-foot` class |
+| `src/components/SearchBox.tsx` | 根 div 追加 `className="search-box-wrap"` |
 
 ---
 
