@@ -26,12 +26,12 @@ export default function ArchiveFilter({ posts }: Props) {
 
   return (
     <>
-      <div class="filter reveal">
-        <span class="label">筛选 · Filter</span>
+      <div className="filter reveal">
+        <span className="label">筛选 · Filter</span>
         {FILTERS.map((f) => (
           <button
             key={f}
-            class="pill"
+            className="pill"
             data-active={active === f}
             onClick={() => setActive(f)}
           >
@@ -41,24 +41,24 @@ export default function ArchiveFilter({ posts }: Props) {
       </div>
 
       {grouped.map(([year, items]: [string, CollectionEntry<'posts'>[]]) => (
-        <div key={year} class="year-group">
-          <div class="year reveal">{year}</div>
-          <div class="list">
+        <div key={year} className="year-group">
+          <div className="year reveal">{year}</div>
+          <div className="list">
             {items.map((post: CollectionEntry<'posts'>) => (
-              <a key={post.id} class="row reveal" href={`/posts/${post.id}`}>
-                <div class="date">
+              <a key={post.id} className="row reveal" href={`/posts/${post.id}`}>
+                <div className="date">
                   {post.data.date.toISOString().slice(0, 10)}
                 </div>
-                <div class="title">
+                <div className="title">
                   {post.data.title}
                   {post.data.titleEm && (
                     <>
                       {' '}
-                      <span class="em">{post.data.titleEm}</span>
+                      <span className="em">{post.data.titleEm}</span>
                     </>
                   )}
                 </div>
-                <div class="tag">{post.data.category}</div>
+                <div className="tag">{post.data.category}</div>
               </a>
             ))}
           </div>

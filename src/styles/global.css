@@ -133,6 +133,14 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   background: color-mix(in oklab, var(--bg), transparent 6%);
   border-bottom: 1px solid var(--rule-soft);
 }
+.topbar.scrolled {
+  box-shadow: 0 1px 12px rgba(0,0,0,0.07);
+}
+@media (prefers-color-scheme: dark) {
+  .topbar.scrolled {
+    box-shadow: 0 1px 12px rgba(0,0,0,0.3);
+  }
+}
 
 .brand {
   display: flex;
@@ -180,15 +188,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   height: 1px;
   background: var(--accent);
 }
-.nav .icon {
-  display: flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px;
-  color: var(--ink-soft);
-  transition: color 0.2s, background 0.2s;
-  border-radius: 50%;
-}
-.nav .icon:hover { color: var(--ink); background: var(--bg-deep); }
-
 /* =================== Hero — pitch-style giant title =================== */
 
 .hero {
@@ -241,11 +240,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   font-style: italic;
   color: var(--accent);
 }
-.hero h1 .light {
-  font-weight: 300;
-  color: var(--ink-soft);
-}
-
 .hero .dek {
   margin-top: clamp(28px, 5vh, 56px);
   font-family: var(--f-body);
@@ -433,12 +427,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   transition: padding 0.4s;
 }
 .grid-item:hover .top { padding-left: 14px; }
-.grid-item .top .num {
-  font-family: var(--f-mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  color: var(--accent);
-}
 .grid-item .top .date {
   font-family: var(--f-mono);
   font-size: 10px;
@@ -519,12 +507,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   color: var(--bg);
   border-color: var(--ink);
 }
-.pill .count {
-  margin-left: 8px;
-  font-size: 9px;
-  opacity: 0.6;
-}
-
 /* =================== Archive list =================== */
 
 .year-group { margin-bottom: 56px; }
@@ -573,14 +555,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
-}
-.list .row .reads {
-  font-family: var(--f-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  text-align: right;
 }
 
 /* =================== Article view =================== */
@@ -916,6 +890,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .grid-item, .grid-item:nth-child(3n) { border-right: 0; }
   .nav .link { display: none; }
   .list .row { grid-template-columns: 70px 1fr; gap: 14px; }
-  .list .row .tag, .list .row .reads { display: none; }
+  .list .row .tag { display: none; }
   .hero { padding-top: 80px; padding-bottom: 60px; }
 }

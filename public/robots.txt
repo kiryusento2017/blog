@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zhongmo-shijian.example.com/sitemap-index.xml

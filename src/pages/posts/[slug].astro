@@ -6,22 +6,23 @@ import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
-  return posts.map((post) => ({
+  const sorted = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  const idxMap = new Map(sorted.map((p, i) => [p.id, i]));
+
+  return sorted.map((post, i) => ({
     params: { slug: post.id },
-    props: { post },
+    props: {
+      post,
+      sorted,
+      prev: sorted[i + 1] ?? null,
+      next: sorted[i - 1] ?? null,
+    },
   }));
 }
 
-const { post } = Astro.props;
-
-const allPosts = await getCollection('posts');
-const sorted = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-
+const { post, sorted, prev, next } = Astro.props;
 const { title, titleEm, date, category, tags, readTime, words, description, num } = post.data;
-
 const idx = sorted.findIndex(p => p.id === post.id);
-const prev = sorted[idx + 1];
-const next = sorted[idx - 1];
 
 const headings = (Array.isArray(post.rendered?.metadata?.headings)
   ? post.rendered.metadata.headings
@@ -163,20 +164,8 @@ const dateLong = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'lon
       btn.addEventListener('click', function () {
         var code = pre.querySelector('code');
         var text = (code ? code.innerText : pre.innerText).trim();
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function () {
-            onCopied(btn);
-          }, function () {
-            var ta = document.createElement('textarea');
-            ta.value = text;
-            ta.style.position = 'fixed';
-            ta.style.opacity = '0';
-            document.body.appendChild(ta);
-            ta.select();
-            if (document.execCommand('copy')) { onCopied(btn); }
-            document.body.removeChild(ta);
-          });
-        } else {
+
+        function fallbackCopy() {
           var ta = document.createElement('textarea');
           ta.value = text;
           ta.style.position = 'fixed';
@@ -185,6 +174,16 @@ const dateLong = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'lon
           ta.select();
           if (document.execCommand('copy')) { onCopied(btn); }
           document.body.removeChild(ta);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            onCopied(btn);
+          }, function () {
+            fallbackCopy();
+          });
+        } else {
+          fallbackCopy();
         }
       });
 
