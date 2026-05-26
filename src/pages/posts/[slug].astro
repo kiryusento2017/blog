@@ -131,4 +131,67 @@ const dateLong = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'lon
   })();
 </script>
 
+<script is:inline>
+  (function () {
+    function onCopied(btn) {
+      btn.textContent = '✓ COPIED';
+      btn.classList.add('copied');
+      setTimeout(function () {
+        btn.textContent = 'COPY';
+        btn.classList.remove('copied');
+      }, 1500);
+    }
+
+    document.querySelectorAll('.content pre').forEach(function (pre) {
+      var lang = pre.querySelector('.lang');
+
+      var actions = document.createElement('div');
+      actions.className = 'code-actions';
+
+      if (lang) {
+        pre.removeChild(lang);
+        actions.appendChild(lang);
+        var sep = document.createElement('span');
+        sep.className = 'sep';
+        sep.textContent = '·';
+        actions.appendChild(sep);
+      }
+
+      var btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.textContent = 'COPY';
+      btn.addEventListener('click', function () {
+        var code = pre.querySelector('code');
+        var text = (code ? code.innerText : pre.innerText).trim();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            onCopied(btn);
+          }, function () {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            if (document.execCommand('copy')) { onCopied(btn); }
+            document.body.removeChild(ta);
+          });
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          if (document.execCommand('copy')) { onCopied(btn); }
+          document.body.removeChild(ta);
+        }
+      });
+
+      actions.appendChild(btn);
+      pre.appendChild(actions);
+    });
+  })();
+</script>
+
 </BaseLayout>

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -7,6 +7,8 @@ interface Props {
 
 export default function SearchBox({ posts }: Props) {
   const [query, setQuery] = useState('');
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   const results = useMemo(() => {
     if (!query.trim()) return [];
@@ -22,8 +24,32 @@ export default function SearchBox({ posts }: Props) {
       .slice(0, 8);
   }, [query, posts]);
 
+  useEffect(() => {
+    setOpen(results.length > 0);
+  }, [results]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpen(false);
+        setQuery('');
+      }
+    };
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('click', onClick);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('click', onClick);
+    };
+  }, []);
+
   return (
-    <div style={{ position: 'relative' }}>
+    <div ref={ref} style={{ position: 'relative' }}>
       <input
         type="search"
         placeholder="搜索文章..."
@@ -41,7 +67,7 @@ export default function SearchBox({ posts }: Props) {
           outline: 'none',
         }}
       />
-      {results.length > 0 && (
+      {open && results.length > 0 && (
         <div
           style={{
             position: 'absolute',

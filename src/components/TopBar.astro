@@ -34,3 +34,14 @@ const links = [
     <SearchBox posts={posts} client:load />
   </nav>
 </header>
+
+<script>
+  const topbar = document.querySelector('.topbar');
+  if (topbar) {
+    const onScroll = () => {
+      topbar.classList.toggle('scrolled', window.scrollY > 16);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+</script>
