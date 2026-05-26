@@ -181,13 +181,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .nav .link:hover { color: var(--ink); }
 .nav .link[data-active="true"] { color: var(--ink); }
-.nav .link[data-active="true"]::after {
-  content: "";
-  position: absolute;
-  bottom: 4px; left: 14px; right: 14px;
-  height: 1px;
-  background: var(--accent);
-}
 /* — hamburger — */
 .hamburger {
   display: none;
