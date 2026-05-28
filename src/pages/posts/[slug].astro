@@ -22,7 +22,6 @@ export async function getStaticPaths() {
 
 const { post, sorted, prev, next } = Astro.props;
 const { title, titleEm, date, category, tags, readTime, words, description, num } = post.data;
-const idx = sorted.findIndex(p => p.id === post.id);
 
 const headings = (Array.isArray(post.rendered?.metadata?.headings)
   ? post.rendered.metadata.headings

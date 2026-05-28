@@ -7,7 +7,7 @@ export async function GET(context) {
 
   return rss({
     title: '终末诗篇',
-    description: '家庭数据中心 PVE 笔记',
+    description: '终末诗篇 — 代码、工具、生活',
     site: context.site,
     items: sorted.map((post) => ({
       title: `${post.data.title}${post.data.titleEm ? ' — ' + post.data.titleEm : ''}`,

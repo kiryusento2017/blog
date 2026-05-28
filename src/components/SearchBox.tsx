@@ -69,11 +69,11 @@ export default function SearchBox({ posts }: Props) {
       />
       {open && results.length > 0 && (
         <div
+          className="search-dropdown"
           style={{
             position: 'absolute',
             top: '100%',
             right: 0,
-            width: '360px',
             background: 'var(--bg)',
             border: '1px solid var(--rule)',
             borderRadius: '4px',
