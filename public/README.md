@@ -6,5 +6,5 @@
 
 服务器更新：
 ```bash
-cd /var/www/blog && git pull origin deploy
+cd /var/www/blog && git fetch origin && git reset --hard origin/deploy
 ```
