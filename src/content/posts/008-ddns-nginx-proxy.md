@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: DDNS + Nginx 反向代理
 date: 2025-08-02
 category: 技术
+series: ["家庭数据中心 PVE 系列"]
 tags: [DDNS, Nginx, 反向代理, Cloudflare]
 description: 使用 DDNS-GO + Nginx Proxy Manager 实现动态域名与反向代理，配合 Cloudflare 托管域名。
 readTime: 6 min

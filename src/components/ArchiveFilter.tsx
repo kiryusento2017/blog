@@ -1,18 +1,26 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import type { CollectionEntry } from 'astro:content';
 
-const FILTERS = ['全部', '技术', '工具', '生活', '阅读'];
+const SERIES_ORDER = ['家庭数据中心 PVE 系列', '物理 · Physics'];
+const MISC_LABEL = '俗世杂记 life.md';
 
 interface Props {
   posts: CollectionEntry<'posts'>[];
 }
 
 export default function ArchiveFilter({ posts }: Props) {
-  const [active, setActive] = useState('全部');
+  const [active, setActive] = useState<string | null>(null);
+
+  const buttons = useMemo(() => {
+    const discovered = Array.from(new Set(posts.flatMap((p) => p.data.series ?? [])));
+    const extra = discovered.filter((s) => !SERIES_ORDER.includes(s));
+    return [...SERIES_ORDER, ...extra, MISC_LABEL];
+  }, [posts]);
 
   const filtered = useMemo(() => {
-    if (active === '全部') return posts;
-    return posts.filter((p) => p.data.category === active);
+    if (active === null) return posts;
+    if (active === MISC_LABEL) return posts.filter((p) => !p.data.series?.length);
+    return posts.filter((p) => p.data.series?.includes(active));
   }, [active, posts]);
 
   const grouped = useMemo(() => {
@@ -24,16 +32,20 @@ export default function ArchiveFilter({ posts }: Props) {
     return Object.entries(map).sort((a, b) => Number(b[0]) - Number(a[0]));
   }, [filtered]);
 
+  useEffect(() => {
+    document.dispatchEvent(new CustomEvent('content-updated'));
+  }, [grouped]);
+
   return (
     <>
       <div className="filter reveal">
         <span className="label">筛选 · Filter</span>
-        {FILTERS.map((f) => (
+        {buttons.map((f) => (
           <button
             key={f}
             className="pill"
             data-active={active === f}
-            onClick={() => setActive(f)}
+            onClick={() => setActive(active === f ? null : f)}
           >
             {f}
           </button>

@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: LXC 容器模板部署
 date: 2025-04-12
 category: 技术
+series: ["家庭数据中心 PVE 系列"]
 tags: [Proxmox, LXC, Docker]
 description: LXC 容器的初始化配置全流程：时区、SSH、换源、Docker 安装、Portainer 部署、乱码修复与 Macvlan 网络。
 readTime: 10 min

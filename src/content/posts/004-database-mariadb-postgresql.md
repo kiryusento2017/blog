@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: 数据库：MariaDB + PostgreSQL
 date: 2025-05-03
 category: 技术
+series: ["家庭数据中心 PVE 系列"]
 tags: [MariaDB, PostgreSQL, 数据库]
 description: 在 LXC 容器中部署 MariaDB 和 PostgreSQL，涵盖安装、字符集配置、远程访问、用户权限管理与 Navicat 免费连接。
 readTime: 12 min

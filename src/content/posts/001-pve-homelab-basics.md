@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: 前言与基础操作
 date: 2025-03-07
 category: 技术
+series: ["家庭数据中心 PVE 系列"]
 tags: [Proxmox, 家庭服务器, Linux]
 description: 搭建家庭数据中心的起点：PVE 初始化、换源、内核管理与基础网络配置。
 readTime: 8 min

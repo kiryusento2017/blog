@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: UNRAID NAS 虚拟机
 date: 2025-08-26
 category: 技术
+series: ["家庭数据中心 PVE 系列"]
 tags: [UNRAID, NAS, PVE]
 description: 在 PVE 中部署 UNRAID 开心版虚拟机作为 NAS 存储系统，含 U 盘制作、虚拟机创建与硬盘直通。
 readTime: 6 min

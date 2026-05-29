@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: 自家 IPTV 直播源
 date: 2026-03-01
 category: 技术
+series: ["家庭数据中心 PVE 系列"]
 tags: [IPTV, 抓包, Wireshark, ImmortalWrt]
 description: 通过 ImmortalWrt + Wireshark 抓包获取 IPTV 组播地址，制作 M3U 直播源，实现全屋任意设备观看 IPTV。
 readTime: 14 min

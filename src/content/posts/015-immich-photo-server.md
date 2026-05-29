@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: Immich 照片管理
 date: 2026-01-08
 category: 工具
+series: ["家庭数据中心 PVE 系列"]
 tags: [Immich, 照片管理, PostgreSQL, OCI, Docker]
 description: 部署 Immich 照片管理服务，使用 OCI 外挂 PostgreSQL 17 数据库，含向量扩展安装与外挂图库配置。
 readTime: 14 min

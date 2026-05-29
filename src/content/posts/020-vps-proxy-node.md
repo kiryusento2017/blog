@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: VPS 节点搭建
 date: 2026-05-18
 category: 技术
+series: ["家庭数据中心 PVE 系列"]
 tags: [VPS, 节点, S-UI, VLESS, TUIC]
 description: 使用 S-UI 面板在 VPS 上搭建 VLESS-Reality + TUIC 双协议节点，含 BBR 拥塞控制优化。
 readTime: 12 min

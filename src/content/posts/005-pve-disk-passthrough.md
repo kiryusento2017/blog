@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: 硬盘直通
 date: 2025-05-28
 category: 技术
+series: ["家庭数据中心 PVE 系列"]
 tags: [PVE, 硬盘直通, IOMMU]
 description: 在 PVE 中配置硬盘直通，涵盖 VT-D/IOMMU 开启、内核参数修改、模块加载与验证。
 readTime: 6 min

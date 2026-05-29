@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: HomeAssistant 智能家居
 date: 2026-02-03
 category: 工具
+series: ["家庭数据中心 PVE 系列"]
 tags: [HomeAssistant, 智能家居, HACS, 小米]
 description: 在 PVE 虚拟机中安装 HomeAssistant，包括 HACS 安装、反向代理配置与小米 Home 接入。
 readTime: 8 min

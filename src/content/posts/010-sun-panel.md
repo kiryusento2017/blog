@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: Sun-Panel 导航面板
 date: 2025-09-14
 category: 工具
+series: ["家庭数据中心 PVE 系列"]
 tags: [Sun-Panel, 导航, Docker, HD-Icons]
 description: 部署 Sun-Panel 导航面板和 HD-Icons 图标库，通过 macvlan 分配固定 IP，打造家庭数据中心统一入口。
 readTime: 5 min

@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: NFS 文件挂载
 date: 2025-06-17
 category: 技术
+series: ["家庭数据中心 PVE 系列"]
 tags: [NFS, 文件挂载, LXC]
 description: 将 UNRAID NAS 中的文件通过 NFS 挂载到 PVE 宿主机，再推送给各个 LXC 容器使用。
 readTime: 4 min

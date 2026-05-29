@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: ImmortalWrt 旁路由虚拟机
 date: 2025-03-25
 category: 技术
+series: ["家庭数据中心 PVE 系列"]
 tags: [Proxmox, 网络, 旁路由]
 description: 在 PVE 中部署 ImmortalWrt 作为旁路由，实现透明代理与网络分流。
 readTime: 5 min

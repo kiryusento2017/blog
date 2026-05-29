@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: Windows 虚拟机
 date: 2025-11-20
 category: 技术
+series: ["家庭数据中心 PVE 系列"]
 tags: [Windows, 虚拟机, VirtIO, PVE]
 description: 在 PVE 中安装 Windows 虚拟机，含 VirtIO 驱动加载与 ToDesk 远程控制。
 readTime: 5 min

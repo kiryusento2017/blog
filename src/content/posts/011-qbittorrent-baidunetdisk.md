@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: qBittorrent + 百度网盘
 date: 2025-10-05
 category: 工具
+series: ["家庭数据中心 PVE 系列"]
 tags: [qBittorrent, 百度网盘, PT, Docker]
 description: 在 Docker 中部署 qBittorrent 和百度网盘，通过 macvlan 分配独立 IP，含 PT 优化设置与端口转发。
 readTime: 8 min

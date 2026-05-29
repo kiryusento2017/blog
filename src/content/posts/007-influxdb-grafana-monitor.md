@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: InfluxDB + Grafana 电子看板
 date: 2025-07-09
 category: 技术
+series: ["家庭数据中心 PVE 系列"]
 tags: [InfluxDB, Grafana, 监控, Docker]
 description: 部署 InfluxDB 和 Grafana 打造 PVE 性能监控面板，包含 PT 下载监控与仪表盘导入。
 readTime: 12 min

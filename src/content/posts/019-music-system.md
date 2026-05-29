@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: Navidrome 音乐系统
 date: 2026-04-22
 category: 工具
+series: ["家庭数据中心 PVE 系列"]
 tags: [Navidrome, Music Assistant, 音乐, Docker]
 description: 部署 Navidrome、Music Assistant、music-tag-web 打造专属音乐中心，含 AzuraCast 自建电台。
 readTime: 5 min

@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: phpIPAM 地址管理
 date: 2025-12-11
 category: 工具
+series: ["家庭数据中心 PVE 系列"]
 tags: [phpIPAM, IP管理, MariaDB, Docker]
 description: 部署 phpIPAM 进行 IP 地址规划与管理，使用外部 MariaDB 数据库，告别 IP 冲突。
 readTime: 6 min

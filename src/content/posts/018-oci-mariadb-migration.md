@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: OCI MariaDB 数据库迁移
 date: 2026-03-28
 category: 技术
+series: ["家庭数据中心 PVE 系列"]
 tags: [MariaDB, OCI, 数据库迁移, mysqldump]
 description: 在 OCI 上部署 MariaDB，使用 mysqldump 将旧数据库迁移到新实例。
 readTime: 5 min

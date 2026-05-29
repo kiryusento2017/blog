@@ -3,6 +3,7 @@ title: 家庭数据中心 PVE
 titleEm: Emby + MoviePilot 影视服务
 date: 2025-10-29
 category: 工具
+series: ["家庭数据中心 PVE 系列"]
 tags: [Emby, MoviePilot, 影视, Docker]
 description: 部署 Emby 媒体服务器与神医助手，实现片头片尾自动标记与追更，打造家庭影音中心。
 readTime: 7 min
