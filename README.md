@@ -60,3 +60,27 @@ featured: false
 num: "Nº 021"
 ---
 ```
+
+## 部署
+
+```powershell
+# 1. 构建
+npm run build
+
+# 2. 推到 deploy 分支
+$tmp = "$env:TEMP\blog-deploy"
+Remove-Item -Recurse -Force $tmp -ErrorAction SilentlyContinue
+New-Item -ItemType Directory $tmp | Out-Null
+Copy-Item -Recurse "dist\*" $tmp
+cd $tmp
+git init
+git add -A
+git commit -m "deploy"
+git remote add origin https://github.com/kiryusento2017/blog.git
+git push --force origin HEAD:deploy
+```
+
+```bash
+# 服务器更新
+cd /var/www/blog && git fetch origin && git reset --hard origin/deploy
+```
